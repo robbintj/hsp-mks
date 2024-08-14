@@ -1,4 +1,75 @@
-<div>
+<!-- Adicione isso no topo do seu HTML -->
+<!-- <mat-toolbar color="primary">
+  <span>MKS - Integração</span>
+</mat-toolbar> -->
+<div class="container">
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Pesquisar</mat-label>
+    <input matInput [(ngModel)]="searchTerm" (ngModelChange)="filterOverlays()">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onAdd()">Adicionar Registro</button>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="overlays" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="idProduto">
+        <th mat-header-cell *matHeaderCellDef> ID Produto </th>
+        <td mat-cell *matCellDef="let element"> {{element.idProduto}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="paredeFornalha">
+        <th mat-header-cell *matHeaderCellDef> Parede Fornalha </th>
+        <td mat-cell *matCellDef="let element"> {{element.paredeFornalha}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="local">
+        <th mat-header-cell *matHeaderCellDef> Local </th>
+        <td mat-cell *matCellDef="let element"> {{element.local}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="executadoSoldaMKS">
+        <th mat-header-cell *matHeaderCellDef> Executado Solda MKS </th>
+        <td mat-cell *matCellDef="let element"> {{element.executadoSoldaMKS}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="validacaoCQMKS">
+        <th mat-header-cell *matHeaderCellDef> Validação CQ MKS </th>
+        <td mat-cell *matCellDef="let element"> {{element.validacaoCQMKS}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="onEdit(element.id)">Edit</button>
+          <button mat-button color="warn" (click)="onDelete(element.id)">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['id', 'idProduto', 'paredeFornalha', 'local', 'executadoSoldaMKS', 'validacaoCQMKS', 'status', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['id', 'idProduto', 'paredeFornalha', 'local', 'executadoSoldaMKS', 'validacaoCQMKS', 'status', 'actions'];"></tr>
+    </table>
+  </div>
+</div>
+
+
+<!-- <div>
     <mat-form-field appearance="fill">
       <mat-label>Search</mat-label>
       <input matInput [(ngModel)]="searchTerm" (ngModelChange)="filterOverlays()">
@@ -7,7 +78,6 @@
     <button mat-raised-button color="primary" (click)="onAdd()">Add Overlay</button>
   
     <table mat-table [dataSource]="overlays" class="mat-elevation-z8">
-      <!-- Columns Definitions -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -55,4 +125,4 @@
       <tr mat-row *matRowDef="let row; columns: ['id', 'idProduto', 'paredeFornalha', 'local', 'executadoSoldaMKS', 'validacaoCQMKS', 'status', 'actions'];"></tr>
     </table>
   </div>
-  
+   -->

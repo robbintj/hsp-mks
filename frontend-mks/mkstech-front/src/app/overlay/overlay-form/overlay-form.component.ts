@@ -1,57 +1,164 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OverlayService } from '../service/overlay.service';
-import { Overlay } from '../model/overlay.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Overlay } from '../../overlay/model/overlay.model';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-overlay-form',
-  standalone: true,
   templateUrl: './overlay-form.component.html',
   styleUrls: ['./overlay-form.component.scss'],
+  standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
-    MatFormFieldModule,
     MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatOptionModule,
     MatDatepickerModule,
-    MatButtonModule
+    MatToolbarModule
   ]
 })
 export class OverlayFormComponent implements OnInit {
-  overlay: Overlay = {} as Overlay;
-  isEditMode: boolean = false;
+  
+  overlayForm: FormGroup;
+  id: number;
+  isEdit: boolean = false;
 
   constructor(
+    private fb: FormBuilder,
     private overlayService: OverlayService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this.overlayForm = this.fb.group({
+      idProduto: ['', Validators.required],
+      paredeFornalha: ['', Validators.required],
+      local: ['', Validators.required],
+      numeroTubo: ['', Validators.required],
+      numeroTuboAdjacente: ['', Validators.required],
+      elevacaoInferior: ['', Validators.required],
+      elevacaoSuperior: ['', Validators.required],
+      dimensao: ['', Validators.required],
+      escopo: ['', Validators.required],
+      lado: ['', Validators.required],
+      tipoEscopo: ['', Validators.required],
+      liberadoGeral: ['', Validators.required],
+      pendenteGeralParceiro: ['', Validators.required],
+      pendenteGeralMKS: ['', Validators.required],
+      executadoSoldaMKS: ['', Validators.required],
+      terminoMKS: ['', Validators.required],
+      validacaoCQMKS: ['', Validators.required],
+      validacaoMKS: ['', Validators.required],
+      validadoParceiro: ['', Validators.required],
+      vsParceiro: ['', Validators.required],
+      lpParceiro: ['', Validators.required],
+      liberadoParceiro: ['', Validators.required],
+      dataLiberadoParceiro: ['', Validators.required],
+      status: ['', Validators.required],
+      observacaoAlumar: ['', Validators.required],
+      observacaoMKS: ['', Validators.required],
+      observacaoParceiro: ['', Validators.required]
+    });
+
+    this.id = this.route.snapshot.params['id'];
+    this.isEdit = !!this.id;
+  }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
-    if (id) {
-      this.isEditMode = true;
-      this.overlayService.getOverlay(id).subscribe(data => {
-        this.overlay = data;
+    if (this.isEdit) {
+      this.overlayService.getOverlay(this.id).subscribe(data => {
+        this.overlayForm.patchValue(data);
       });
     }
   }
 
-  onSave(): void {
-    if (this.isEditMode) {
-      this.overlayService.updateOverlay(this.overlay.id!, this.overlay).subscribe(() => {
-        this.router.navigate(['/overlay-list']);
-      });
-    } else {
-      this.overlayService.createOverlay(this.overlay).subscribe(() => {
-        this.router.navigate(['/overlay-list']);
-      });
+  onSubmit() {
+    if (this.overlayForm.valid) {
+      if (this.isEdit) {
+        this.overlayService.updateOverlay(this.id, this.overlayForm.value).subscribe(() => {
+          this.router.navigate(['/overlay-list']);
+        });
+      } else {
+        this.overlayService.createOverlay(this.overlayForm.value).subscribe(() => {
+          this.router.navigate(['/overlay-list']);
+        });
+      }
     }
   }
+
+  getFieldError(field: string): boolean {
+    const control = this.overlayForm.get(field);
+    return control ? control.hasError('required') : false;
+  }
 }
+
+
+// import { Component, OnInit } from '@angular/core';
+// import { OverlayService } from '../service/overlay.service';
+// import { Overlay } from '../model/overlay.model';
+// import { ActivatedRoute, Router } from '@angular/router';
+// import { CommonModule } from '@angular/common';
+// import { FormsModule } from '@angular/forms';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatInputModule } from '@angular/material/input';
+// import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { MatButtonModule } from '@angular/material/button';
+
+// @Component({
+//   selector: 'app-overlay-form',
+//   standalone: true,
+//   templateUrl: './overlay-form.component.html',
+//   styleUrls: ['./overlay-form.component.scss'],
+//   imports: [
+//     CommonModule,
+//     FormsModule,
+//     MatFormFieldModule,
+//     MatInputModule,
+//     MatDatepickerModule,
+//     MatButtonModule
+//   ]
+// })
+// export class OverlayFormComponent implements OnInit {
+//   overlay: Overlay = {} as Overlay;
+//   isEditMode: boolean = false;
+
+//   constructor(
+//     private overlayService: OverlayService,
+//     private route: ActivatedRoute,
+//     private router: Router
+//   ) { }
+
+//   ngOnInit(): void {
+//     const id = this.route.snapshot.params['id'];
+//     if (id) {
+//       this.isEditMode = true;
+//       this.overlayService.getOverlay(id).subscribe(data => {
+//         this.overlay = data;
+//       });
+//     }
+//   }
+
+//   onSave(): void {
+//     if (this.isEditMode) {
+//       this.overlayService.updateOverlay(this.overlay.id!, this.overlay).subscribe(() => {
+//         this.router.navigate(['/overlay-list']);
+//       });
+//     } else {
+//       this.overlayService.createOverlay(this.overlay).subscribe(() => {
+//         this.router.navigate(['/overlay-list']);
+//       });
+//     }
+//   }
+// }

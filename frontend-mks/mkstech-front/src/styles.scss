@@ -1,4 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.scss */
+
+/* Ajuste geral de espaçamento e layout */
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  button {
+    margin-bottom: 16px;
+  }
+  
+  table {
+    width: 100%;
+    max-width: 800px;
+    overflow-x: auto;
+  }
+  
+  /* Ajuste das mensagens de sucesso e erro */
+  .success-message {
+    color: #4caf50; /* Verde adequado ao tema azul */
+    margin-bottom: 16px;
+  }
+  
+  .error-message {
+    color: #f44336; /* Vermelho adequado ao tema azul */
+    margin-bottom: 16px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 600px) {
+    .mat-form-field {
+      font-size: 14px;
+    }
+    
+    button {
+      font-size: 16px;
+      padding: 12px;
+    }
+    
+    table {
+      font-size: 14px;
+    }
+  }
+  
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

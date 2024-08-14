@@ -1,4 +1,271 @@
-<form (ngSubmit)="onSave()">
+
+<!-- overlay-form.component.html -->
+<div class="form-container">
+<form [formGroup]="overlayForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>ID Produto</mat-label>
+    <input matInput formControlName="idProduto" />
+    <mat-error *ngIf="overlayForm.get('idProduto')?.hasError('required')">
+      ID Produto é obrigatório
+    </mat-error>      
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Parede Fornalha</mat-label>
+    <mat-select formControlName="paredeFornalha">
+      <mat-option *ngFor="let option of ['TRASEIRA', 'LESTE', 'OESTE', 'FRONTAL']" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="overlayForm.get('paredeFornalha')?.hasError('required')">
+      Parede Fornalha é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Local</mat-label>
+    <mat-select formControlName="local">
+      <mat-option *ngFor="let option of ['INTERNO', 'EXTERNO']" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="overlayForm.get('local')?.hasError('required')">
+      Local é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Número do Tubo</mat-label>
+    <input matInput formControlName="numeroTubo" />
+    <mat-error *ngIf="overlayForm.get('numeroTubo')?.hasError('required')">
+      Número do Tubo é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Número do Tubo Adjacente</mat-label>
+    <input matInput formControlName="numeroTuboAdjacente" />
+    <mat-error *ngIf="overlayForm.get('numeroTuboAdjacente')?.hasError('required')">
+      Número do Tubo Adjacente é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Elevação Inferior</mat-label>
+    <input matInput formControlName="elevacaoInferior" type="number" />
+    <mat-error *ngIf="overlayForm.get('elevacaoInferior')?.hasError('required')">
+      Elevação Inferior é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Elevação Superior</mat-label>
+    <input matInput formControlName="elevacaoSuperior" type="number" />
+    <mat-error *ngIf="overlayForm.get('elevacaoSuperior')?.hasError('required')">
+      Elevação Superior é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Dimensão</mat-label>
+    <input matInput formControlName="dimensao" type="number" />
+    <mat-error *ngIf="overlayForm.get('dimensao')?.hasError('required')">
+      Dimensão é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Escopo</mat-label>
+    <mat-select formControlName="escopo">
+      <mat-option *ngFor="let option of ['REVEST. DURO', 'REVEST. NORMAL', 'TROCAR TUBO', 'REVEST. ALETA']" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="overlayForm.get('escopo')?.hasError('required')">
+      Escopo é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Lado</mat-label>
+    <mat-select formControlName="lado">
+      <mat-option *ngFor="let option of ['ALETA', 'TUBO', 'WINGWALL']" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="overlayForm.get('lado')?.hasError('required')">
+      Lado é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo Escopo</mat-label>
+    <input matInput formControlName="tipoEscopo" />
+    <mat-error *ngIf="overlayForm.get('tipoEscopo')?.hasError('required')">
+      Tipo Escopo é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Liberado Geral</mat-label>
+    <input matInput formControlName="liberadoGeral" />
+    <mat-error *ngIf="overlayForm.get('liberadoGeral')?.hasError('required')">
+      Liberado Geral é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Pendente Geral Parceiro</mat-label>
+    <input matInput formControlName="pendenteGeralParceiro" />
+    <mat-error *ngIf="overlayForm.get('pendenteGeralParceiro')?.hasError('required')">
+      Pendente Geral Parceiro é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Pendente Geral MKS</mat-label>
+    <input matInput formControlName="pendenteGeralMKS" />
+    <mat-error *ngIf="overlayForm.get('pendenteGeralMKS')?.hasError('required')">
+      Pendente Geral MKS é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Executado Solda MKS</mat-label>
+    <input matInput formControlName="executadoSoldaMKS" type="number" />
+    <mat-error *ngIf="overlayForm.get('executadoSoldaMKS')?.hasError('required')">
+      Executado Solda MKS é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Término MKS</mat-label>
+    <input
+      matInput
+      [matDatepicker]="pickerTerminoMKS"
+      formControlName="terminoMKS"
+    />
+    <mat-datepicker-toggle matSuffix [for]="pickerTerminoMKS"></mat-datepicker-toggle>
+    <mat-datepicker #pickerTerminoMKS></mat-datepicker>
+    <mat-error *ngIf="overlayForm.get('terminoMKS')?.hasError('required')">
+      Término MKS é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Validação CQ MKS</mat-label>
+    <input matInput formControlName="validacaoCQMKS" type="number" />
+    <mat-error *ngIf="overlayForm.get('validacaoCQMKS')?.hasError('required')">
+      Validação CQ MKS é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Validação MKS</mat-label>
+    <input
+      matInput
+      [matDatepicker]="pickerValidacaoMKS"
+      formControlName="validacaoMKS"
+    />
+    <mat-datepicker-toggle matSuffix [for]="pickerValidacaoMKS"></mat-datepicker-toggle>
+    <mat-datepicker #pickerValidacaoMKS></mat-datepicker>
+    <mat-error *ngIf="overlayForm.get('validacaoMKS')?.hasError('required')">
+      Validação MKS é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Validado Parceiro</mat-label>
+    <input matInput formControlName="validadoParceiro" type="number" />
+    <mat-error *ngIf="overlayForm.get('validadoParceiro')?.hasError('required')">
+      Validado Parceiro é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>VS Parceiro</mat-label>
+    <input matInput formControlName="vsParceiro" type="number" />
+    <mat-error *ngIf="overlayForm.get('vsParceiro')?.hasError('required')">
+      VS Parceiro é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>LP Parceiro</mat-label>
+    <input matInput formControlName="lpParceiro" type="number" />
+    <mat-error *ngIf="overlayForm.get('lpParceiro')?.hasError('required')">
+      LP Parceiro é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Liberado Parceiro</mat-label>
+    <input matInput formControlName="liberadoParceiro" />
+    <mat-error *ngIf="overlayForm.get('liberadoParceiro')?.hasError('required')">
+      Liberado Parceiro é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data Liberado Parceiro</mat-label>
+    <input
+      matInput
+      [matDatepicker]="pickerDataLiberadoParceiro"
+      formControlName="dataLiberadoParceiro"
+    />
+    <mat-datepicker-toggle matSuffix [for]="pickerDataLiberadoParceiro"></mat-datepicker-toggle>
+    <mat-datepicker #pickerDataLiberadoParceiro></mat-datepicker>
+    <mat-error *ngIf="overlayForm.get('dataLiberadoParceiro')?.hasError('required')">
+      Data Liberado Parceiro é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let option of ['ANDAMENTO', 'CONCLUÍDO', 'PENDENTE']" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="overlayForm.get('status')?.hasError('required')">
+      Status é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Observação Alumar</mat-label>
+    <textarea matInput formControlName="observacaoAlumar"></textarea>
+    <mat-error *ngIf="overlayForm.get('observacaoAlumar')?.hasError('required')">
+      Observação Alumar é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Observação MKS</mat-label>
+    <textarea matInput formControlName="observacaoMKS"></textarea>
+    <mat-error *ngIf="overlayForm.get('observacaoMKS')?.hasError('required')">
+      Observação MKS é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Observação Parceiro</mat-label>
+    <textarea matInput formControlName="observacaoParceiro"></textarea>
+    <mat-error *ngIf="overlayForm.get('observacaoParceiro')?.hasError('required')">
+      Observação Parceiro é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">
+    {{ isEdit ? 'Atualizar' : 'Criar' }}
+  </button>
+</form>
+</div>
+
+
+
+<!-- <form (ngSubmit)="onSave()">
     <mat-form-field appearance="fill">
       <mat-label>ID Produto</mat-label>
       <input matInput [(ngModel)]="overlay.idProduto" name="idProduto" required>
@@ -142,4 +409,4 @@
   
     <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Update' : 'Save' }}</button>
   </form>
-  
+   -->

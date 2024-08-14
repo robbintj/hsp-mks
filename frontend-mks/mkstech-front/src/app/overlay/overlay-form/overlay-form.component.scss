@@ -1,0 +1,46 @@
+/* overlay-form.component.scss */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 800px; /* Ajuste o máximo para a largura desejada */
+    margin: 0 auto; /* Centraliza o formulário */
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  button {
+    display: block;
+    width: 100%; /* Ajusta o botão para preencher a largura disponível */
+    max-width: 200px; /* Define um tamanho máximo para o botão */
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  @media (max-width: 600px) {
+    form {
+      padding: 8px; /* Ajusta o padding para telas menores */
+    }
+  
+    mat-form-field {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 16px;
+      padding: 12px;
+      width: 100%; /* Garante que o botão preencha a largura disponível em telas menores */
+    }
+  }
+  

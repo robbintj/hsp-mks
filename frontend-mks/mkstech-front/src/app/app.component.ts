@@ -5,6 +5,8 @@ import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
     RouterOutlet,
     MatToolbarModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatIconModule
   ]
 })
