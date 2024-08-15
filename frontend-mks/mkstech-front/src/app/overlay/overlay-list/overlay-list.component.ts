@@ -9,8 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterOutlet } from '@angular/router';
-import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-overlay-list',
@@ -26,18 +25,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatButtonModule,
     RouterOutlet,
     MatToolbarModule
-
   ]
 })
-
 export class OverlayListComponent implements OnInit {
   overlays: Overlay[] = [];
   searchTerm: string = '';
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
-   // Adicionando a propriedade displayedColumns
-   displayedColumns: string[] = ['id', 'idProduto', 'paredeFornalha', 'local', 'executadoSoldaMKS', 'validacaoCQMKS', 'status', 'actions'];
+  // Adicionando a propriedade displayedColumns
+  displayedColumns: string[] = ['id', 'idProduto', 'paredeFornalha', 'local', 'executadoSoldaMKS', 'validacaoCQMKS', 'status', 'actions'];
 
   constructor(private overlayService: OverlayService, private router: Router) { }
 
@@ -93,15 +90,64 @@ export class OverlayListComponent implements OnInit {
   }
 
   onAdd(): void {
-    this.router.navigate(['/overlay-form']).then(success => {
-      if (success) {
+    const newOverlay: Overlay = {
+      id: undefined, // Será gerado automaticamente pelo backend
+      idProduto: '', // Será gerado pelo backend
+      paredeFornalha: '',
+      local: '',
+      numeroTubo: 0,
+      numeroTuboAdjacente: '',
+      elevacaoInferior: 0,
+      elevacaoSuperior: 0,
+      dimensao: 0,
+      escopo: '',
+      lado: '',
+      tipoEscopo: '',
+      liberadoGeral: '',
+      pendenteGeralParceiro: '',
+      pendenteGeralMKS: '',
+      executadoSoldaMKS: 0,
+      terminoMKS: new Date(),
+      validacaoCQMKS: 0,
+      validacaoMKS: new Date(),
+      validadoParceiro: 0,
+      vsParceiro: 0,
+      lpParceiro: 0,
+      liberadoParceiro: '',
+      dataLiberadoParceiro: new Date(),
+      status: '',
+      observacaoAlumar: '',
+      observacaoMKS: '',
+      observacaoParceiro: ''
+    };
+
+    this.overlayService.createOverlay(newOverlay).subscribe({
+      next: (createdOverlay: Overlay) => {
         this.successMessage = 'Novo registro adicionado com sucesso!';
-      } else {
-        this.errorMessage = 'Erro ao redirecionar para a página de adição.';
+        this.errorMessage = null;
+
+        // Redireciona para o formulário de edição com o ID do novo Overlay
+        this.router.navigate(['/overlay-form', createdOverlay.id]).then(success => {
+          if (!success) {
+            this.errorMessage = 'Erro ao redirecionar para a página de adição.';
+          }
+        });
+      },
+      error: () => {
+        this.errorMessage = 'Erro ao adicionar o novo registro.';
+        this.successMessage = null;
       }
     });
   }
+  
+  private generateIdOverlay(overlay: Partial<Overlay>): string {
+    const localPrefix = overlay.local ? overlay.local.substring(0, 2) : '';
+    const paredeFornalhaPrefix = overlay.paredeFornalha ? overlay.paredeFornalha.substring(0, 2) : '';
+
+    return `${localPrefix}${overlay.numeroTubo}${paredeFornalhaPrefix}${Math.floor(Math.random() * 10000)}`; // Gera um ID aleatório para exemplo
+  }
 }
+
 
 
 

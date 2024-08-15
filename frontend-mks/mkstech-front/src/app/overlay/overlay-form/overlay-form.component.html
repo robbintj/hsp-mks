@@ -2,13 +2,29 @@
 <div class="overlay-container">
   <h5 class="form-title">Cadastro Overlay</h5> 
 <form [formGroup]="overlayForm" (ngSubmit)="onSubmit()">
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>ID Overlay</mat-label>
+    <input matInput formControlName="idOverlay" readonly />
+    <mat-error *ngIf="overlayForm.get('idOverlay')?.hasError('required')">
+      ID Overlay é obrigatório
+    </mat-error>
+  </mat-form-field> -->
+
   <mat-form-field appearance="fill">
+    <mat-label>ID Produto</mat-label>
+    <input matInput formControlName="idProduto" readonly />
+    <mat-error *ngIf="overlayForm.get('idProduto')?.hasError('required')">
+      ID Produto é obrigatório
+    </mat-error>
+  </mat-form-field>
+  
+  <!-- <mat-form-field appearance="fill">
     <mat-label>ID Produto</mat-label>
     <input matInput formControlName="idProduto" />
     <mat-error *ngIf="overlayForm.get('idProduto')?.hasError('required')">
       ID Produto é obrigatório
     </mat-error>      
-  </mat-form-field>
+  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Parede Fornalha</mat-label>
@@ -25,7 +41,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Local</mat-label>
     <mat-select formControlName="local">
-      <mat-option *ngFor="let option of ['INTERNO', 'EXTERNO']" [value]="option">
+      <mat-option *ngFor="let option of ['ALETA', 'TUBO', 'WINGWALL']" [value]="option">
         {{ option }}
       </mat-option>
     </mat-select>
@@ -52,11 +68,36 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Elevação Inferior</mat-label>
+    <mat-select formControlName="elevacaoInferior">
+      <mat-option *ngFor="let option of elevacaoOptions" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="overlayForm.get('elevacaoInferior')?.hasError('required')">
+      Elevação Inferior é obrigatória
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Elevação Superior</mat-label>
+    <mat-select formControlName="elevacaoSuperior">
+      <mat-option *ngFor="let option of elevacaoOptions" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="overlayForm.get('elevacaoSuperior')?.hasError('required')">
+      Elevação Superior é obrigatória
+    </mat-error>
+  </mat-form-field>
+  
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Elevação Inferior</mat-label>
     <input matInput formControlName="elevacaoInferior" type="number" />
     <mat-error *ngIf="overlayForm.get('elevacaoInferior')?.hasError('required')">
       Elevação Inferior é obrigatória
     </mat-error>
   </mat-form-field>
+  
 
   <mat-form-field appearance="fill">
     <mat-label>Elevação Superior</mat-label>
@@ -64,7 +105,7 @@
     <mat-error *ngIf="overlayForm.get('elevacaoSuperior')?.hasError('required')">
       Elevação Superior é obrigatória
     </mat-error>
-  </mat-form-field>
+  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Dimensão</mat-label>
@@ -89,7 +130,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Lado</mat-label>
     <mat-select formControlName="lado">
-      <mat-option *ngFor="let option of ['ALETA', 'TUBO', 'WINGWALL']" [value]="option">
+      <mat-option *ngFor="let option of ['INTERNO', 'EXTERNO']" [value]="option">
         {{ option }}
       </mat-option>
     </mat-select>
