@@ -1,48 +1,65 @@
-/* styles.scss */
+@import '@angular/material/prebuilt-themes/azure-blue.css';
 
 /* Ajuste geral de espaçamento e layout */
 .mat-form-field {
-    width: 100%;
-    margin-bottom: 16px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+button {
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  max-width: 800px;
+  overflow-x: auto;
+}
+
+/* Ajuste das mensagens de sucesso e erro */
+.success-message {
+  color: #4caf50; /* Verde adequado ao tema azul */
+  margin-bottom: 16px;
+}
+
+.error-message {
+  color: #f44336; /* Vermelho adequado ao tema azul */
+  margin-bottom: 16px;
+}
+
+/* Estilos globais para a toolbar */
+mat-toolbar {
+  margin-top: 16px; /* Espaço entre a toolbar e o conteúdo acima */
+  background-color: #005580; /* Cor azul mais escura para a toolbar */
+  color: white; /* Cor do texto dentro da toolbar */
+}
+
+/* Margens laterais responsivas para os componentes */
+.overlay-container {
+  margin: 0 16px; /* Margem padrão para dispositivos maiores */
+  padding: 0 16px; /* Espaço interno para evitar que o conteúdo encoste nas bordas */
+}
+
+/* Ajuste das margens para dispositivos móveis */
+@media (max-width: 600px) {
+  .overlay-container {
+    margin: 0 8px; /* Margem reduzida para dispositivos menores */
+    padding: 0 8px; /* Espaço interno reduzido para dispositivos menores */
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
   }
   
   button {
-    margin-bottom: 16px;
+    font-size: 16px;
+    padding: 12px;
   }
   
   table {
-    width: 100%;
-    max-width: 800px;
-    overflow-x: auto;
+    font-size: 14px;
   }
-  
-  /* Ajuste das mensagens de sucesso e erro */
-  .success-message {
-    color: #4caf50; /* Verde adequado ao tema azul */
-    margin-bottom: 16px;
-  }
-  
-  .error-message {
-    color: #f44336; /* Vermelho adequado ao tema azul */
-    margin-bottom: 16px;
-  }
-  
-  /* Responsividade */
-  @media (max-width: 600px) {
-    .mat-form-field {
-      font-size: 14px;
-    }
-    
-    button {
-      font-size: 16px;
-      padding: 12px;
-    }
-    
-    table {
-      font-size: 14px;
-    }
-  }
-  
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

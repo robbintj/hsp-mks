@@ -36,6 +36,9 @@ export class OverlayListComponent implements OnInit {
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
+   // Adicionando a propriedade displayedColumns
+   displayedColumns: string[] = ['id', 'idProduto', 'paredeFornalha', 'local', 'executadoSoldaMKS', 'validacaoCQMKS', 'status', 'actions'];
+
   constructor(private overlayService: OverlayService, private router: Router) { }
 
   ngOnInit(): void {

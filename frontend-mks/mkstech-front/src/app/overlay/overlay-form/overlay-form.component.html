@@ -1,6 +1,6 @@
-
 <!-- overlay-form.component.html -->
-<div class="form-container">
+<div class="overlay-container">
+  <h5 class="form-title">Cadastro Overlay</h5> 
 <form [formGroup]="overlayForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>ID Produto</mat-label>
@@ -257,156 +257,11 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">
-    {{ isEdit ? 'Atualizar' : 'Criar' }}
-  </button>
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit">
+      {{ isEdit ? 'Atualizar' : 'Criar' }}
+    </button>
+    <button mat-raised-button color="warn" (click)="onCancel()">Cancelar</button>
+  </div>
 </form>
 </div>
-
-
-
-<!-- <form (ngSubmit)="onSave()">
-    <mat-form-field appearance="fill">
-      <mat-label>ID Produto</mat-label>
-      <input matInput [(ngModel)]="overlay.idProduto" name="idProduto" required>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Parede Fornalha</mat-label>
-      <input matInput [(ngModel)]="overlay.paredeFornalha" name="paredeFornalha" required>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Local</mat-label>
-      <input matInput [(ngModel)]="overlay.local" name="local">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Número do Tubo</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.numeroTubo" name="numeroTubo">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Número do Tubo Adjacente</mat-label>
-      <input matInput [(ngModel)]="overlay.numeroTuboAdjacente" name="numeroTuboAdjacente">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Elevação Inferior</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.elevacaoInferior" name="elevacaoInferior">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Elevação Superior</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.elevacaoSuperior" name="elevacaoSuperior">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Dimensão</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.dimensao" name="dimensao">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Escopo</mat-label>
-      <input matInput [(ngModel)]="overlay.escopo" name="escopo">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Lado</mat-label>
-      <input matInput [(ngModel)]="overlay.lado" name="lado">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Tipo Escopo</mat-label>
-      <input matInput [(ngModel)]="overlay.tipoEscopo" name="tipoEscopo">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Liberado Geral</mat-label>
-      <input matInput [(ngModel)]="overlay.liberadoGeral" name="liberadoGeral">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Pendente Geral Parceiro</mat-label>
-      <input matInput [(ngModel)]="overlay.pendenteGeralParceiro" name="pendenteGeralParceiro">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Pendente Geral MKS</mat-label>
-      <input matInput [(ngModel)]="overlay.pendenteGeralMKS" name="pendenteGeralMKS">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Executado Solda MKS</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.executadoSoldaMKS" name="executadoSoldaMKS">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Término MKS</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="overlay.terminoMKS" name="terminoMKS">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Validação CQ MKS</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.validacaoCQMKS" name="validacaoCQMKS">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Validação MKS</mat-label>
-      <input matInput [matDatepicker]="picker2" [(ngModel)]="overlay.validacaoMKS" name="validacaoMKS">
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Validado Parceiro</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.validadoParceiro" name="validadoParceiro">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>VS Parceiro</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.vsParceiro" name="vsParceiro">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>LP Parceiro</mat-label>
-      <input matInput type="number" [(ngModel)]="overlay.lpParceiro" name="lpParceiro">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Liberado Parceiro</mat-label>
-      <input matInput [(ngModel)]="overlay.liberadoParceiro" name="liberadoParceiro">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Data Liberado Parceiro</mat-label>
-      <input matInput [matDatepicker]="picker3" [(ngModel)]="overlay.dataLiberadoParceiro" name="dataLiberadoParceiro">
-      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-      <mat-datepicker #picker3></mat-datepicker>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Status</mat-label>
-      <input matInput [(ngModel)]="overlay.status" name="status">
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Observação Alumar</mat-label>
-      <textarea matInput [(ngModel)]="overlay.observacaoAlumar" name="observacaoAlumar"></textarea>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Observação MKS</mat-label>
-      <textarea matInput [(ngModel)]="overlay.observacaoMKS" name="observacaoMKS"></textarea>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Observação Parceiro</mat-label>
-      <textarea matInput [(ngModel)]="overlay.observacaoParceiro" name="observacaoParceiro"></textarea>
-    </mat-form-field>
-  
-    <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Update' : 'Save' }}</button>
-  </form>
-   -->
