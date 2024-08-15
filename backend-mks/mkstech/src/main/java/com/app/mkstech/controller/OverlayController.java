@@ -29,11 +29,15 @@ public class OverlayController {
 
     @PostMapping
     public ResponseEntity<Overlay> createOverlay(@RequestBody Overlay overlay) {
-        // Gera o idProduto antes de salvar
-        String idProduto = generateIdProduto(overlay);
-        overlay.setIdProduto(idProduto);
-
+        // Salva o overlay para gerar o ID automático
         Overlay savedOverlay = overlayService.save(overlay);
+
+        // Gera o idProduto com base no ID do overlay salvo
+        String idProduto = generateIdProduto(savedOverlay);
+        savedOverlay.setIdProduto(idProduto);
+
+        // Salva novamente o overlay com o idProduto atualizado
+        savedOverlay = overlayService.save(savedOverlay);
         return ResponseEntity.ok(savedOverlay);
     }
 
@@ -59,9 +63,18 @@ public class OverlayController {
     private String generateIdProduto(Overlay overlay) {
         String localPrefix = (overlay.getLocal() != null && overlay.getLocal().length() >= 2) ? overlay.getLocal().substring(0, 2) : "";
         String paredeFornalhaPrefix = (overlay.getParedeFornalha() != null && overlay.getParedeFornalha().length() >= 2) ? overlay.getParedeFornalha().substring(0, 2) : "";
+
+        // Inclui o ID do Overlay no idProduto
         return localPrefix + overlay.getNumeroTubo() + paredeFornalhaPrefix + overlay.getId();
     }
 }
+
+    /* private String generateIdProduto(Overlay overlay) {
+        String localPrefix = (overlay.getLocal() != null && overlay.getLocal().length() >= 2) ? overlay.getLocal().substring(0, 2) : "";
+        String paredeFornalhaPrefix = (overlay.getParedeFornalha() != null && overlay.getParedeFornalha().length() >= 2) ? overlay.getParedeFornalha().substring(0, 2) : "";
+        return localPrefix + overlay.getNumeroTubo() + paredeFornalhaPrefix + overlay.getId();
+    }*/
+
 
 
 /*
