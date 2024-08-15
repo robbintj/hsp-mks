@@ -1,3 +1,5 @@
+
+
 package com.app.mkstech.model;
 
 import jakarta.persistence.*;
@@ -297,4 +299,5 @@ public class Overlay {
                 ", observacaoParceiro='" + observacaoParceiro + '\'' +
                 '}';
     }
+
 }
