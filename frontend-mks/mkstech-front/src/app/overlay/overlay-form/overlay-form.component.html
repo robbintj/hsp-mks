@@ -60,7 +60,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Número do Tubo Adjacente</mat-label>
-    <input matInput formControlName="numeroTuboAdjacente" />
+    <input matInput formControlName="numeroTuboAdjacente" readonly/>
     <mat-error *ngIf="overlayForm.get('numeroTuboAdjacente')?.hasError('required')">
       Número do Tubo Adjacente é obrigatório
     </mat-error>

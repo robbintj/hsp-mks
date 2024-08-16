@@ -49,7 +49,7 @@ export class OverlayFormComponent implements OnInit {
       paredeFornalha: ['', Validators.required],
       local: ['', Validators.required],
       numeroTubo: ['', Validators.required],
-      numeroTuboAdjacente: ['', Validators.required],
+      numeroTuboAdjacente: [{ value: '', disabled: true }],
       elevacaoInferior: ['', Validators.required],
       elevacaoSuperior: ['', Validators.required],
       dimensao: ['', Validators.required],
@@ -99,6 +99,13 @@ export class OverlayFormComponent implements OnInit {
     // const idOverlay = this.isEdit ? this.id.toString() : '';
     const idOverlay = this.isEdit ? (this.id || '').toString() : ''; // Certifique-se de que idOverlay é uma string
 
+    // Calcular numeroTuboAdjacente
+  let numeroTuboAdjacente = '';
+  if (local === 'TUBO' && numeroTubo) {
+    numeroTuboAdjacente = (parseInt(numeroTubo, 10) + 1).toString();
+  }
+
+  this.overlayForm.get('numeroTuboAdjacente')?.setValue(numeroTuboAdjacente);
   
     if (local && paredeFornalha && numeroTubo) {
       const idProduto = local.substring(0, 2) + numeroTubo + paredeFornalha.substring(0, 2) + idOverlay;
