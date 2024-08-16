@@ -29,6 +29,12 @@ public class OverlayController {
 
     @PostMapping
     public ResponseEntity<Overlay> createOverlay(@RequestBody Overlay overlay) {
+        // Calcula o numeroTuboAdjacente baseado no campo local
+        if ("TUBO".equalsIgnoreCase(overlay.getLocal())) {
+            overlay.setNumeroTuboAdjacente(String.valueOf(overlay.getNumeroTubo() + 1));
+        } else {
+            overlay.setNumeroTuboAdjacente("");
+        }
         // Salva o overlay para gerar o ID automático
         Overlay savedOverlay = overlayService.save(overlay);
 
