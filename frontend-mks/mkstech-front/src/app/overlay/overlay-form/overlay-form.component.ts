@@ -63,15 +63,24 @@ export class OverlayFormComponent implements OnInit {
       terminoMKS: ['', Validators.required],
       validacaoCQMKS: ['', Validators.required],
       validacaoMKS: ['', Validators.required],
-      validadoParceiro: ['', Validators.required],
-      vsParceiro: ['', Validators.required],
-      lpParceiro: ['', Validators.required],
-      liberadoParceiro: ['', Validators.required],
-      dataLiberadoParceiro: ['', Validators.required],
-      status: ['', Validators.required],
-      observacaoAlumar: ['', Validators.required],
-      observacaoMKS: ['', Validators.required],
-      observacaoParceiro: ['', Validators.required]
+      validadoParceiro: [''],
+      vsParceiro: [''],
+      lpParceiro: [''],
+      liberadoParceiro: [''],
+      dataLiberadoParceiro: [null],
+      status:[{ value: '', disabled: true }],
+      observacaoAlumar: [''],
+      observacaoMKS: [''],
+      observacaoParceiro: ['']
+      // validadoParceiro: ['', Validators.required],
+      // vsParceiro: ['', Validators.required],
+      // lpParceiro: ['', Validators.required],
+      // liberadoParceiro: ['', Validators.required],
+      // dataLiberadoParceiro: ['', Validators.required],
+      // status: ['', Validators.required],
+      // observacaoAlumar: ['', Validators.required],
+      // observacaoMKS: ['', Validators.required],
+      // observacaoParceiro: ['', Validators.required]
     });
 
     this.id = +this.route.snapshot.params['id']; // Converte para número
@@ -97,6 +106,7 @@ export class OverlayFormComponent implements OnInit {
     this.overlayForm.get('numeroTubo')?.valueChanges.subscribe(() => this.generateIdProduto());
     this.overlayForm.get('elevacaoSuperior')?.valueChanges.subscribe(() => this.generateIdProduto());
     this.overlayForm.get('elevacaoInferior')?.valueChanges.subscribe(() => this.generateIdProduto());
+    
   }
 
   getLastDayOfMonth(month: number, year: number): number {

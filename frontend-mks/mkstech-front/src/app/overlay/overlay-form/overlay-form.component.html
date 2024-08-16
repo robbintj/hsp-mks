@@ -293,8 +293,16 @@
       Data Liberado Parceiro é obrigatória
     </mat-error>
   </mat-form-field> -->
-
+  
   <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+    <input matInput formControlName="status" readonly />
+    <mat-error *ngIf="overlayForm.get('status')?.hasError('required')">
+      Status - preenchimento automático
+    </mat-error>
+  </mat-form-field>
+  
+  <!-- <mat-form-field appearance="fill">
     <mat-label>Status</mat-label>
     <mat-select formControlName="status">
       <mat-option *ngFor="let option of ['ANDAMENTO', 'CONCLUÍDO', 'PENDENTE']" [value]="option">
@@ -304,7 +312,7 @@
     <mat-error *ngIf="overlayForm.get('status')?.hasError('required')">
       Status é obrigatório
     </mat-error>
-  </mat-form-field>
+  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Observação Alumar</mat-label>
