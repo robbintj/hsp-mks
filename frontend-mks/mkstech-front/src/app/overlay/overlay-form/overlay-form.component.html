@@ -14,17 +14,9 @@
     <mat-label>ID Produto</mat-label>
     <input matInput formControlName="idProduto" readonly />
     <mat-error *ngIf="overlayForm.get('idProduto')?.hasError('required')">
-      ID Produto é obrigatório
+      ID Produto - preenchimento automático
     </mat-error>
   </mat-form-field>
-  
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>ID Produto</mat-label>
-    <input matInput formControlName="idProduto" />
-    <mat-error *ngIf="overlayForm.get('idProduto')?.hasError('required')">
-      ID Produto é obrigatório
-    </mat-error>      
-  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Parede Fornalha</mat-label>
@@ -62,7 +54,7 @@
     <mat-label>Número do Tubo Adjacente</mat-label>
     <input matInput formControlName="numeroTuboAdjacente" readonly/>
     <mat-error *ngIf="overlayForm.get('numeroTuboAdjacente')?.hasError('required')">
-      Número do Tubo Adjacente é obrigatório
+      Número do Tubo Adjacente - preenchimento automático
     </mat-error>
   </mat-form-field>
 
@@ -89,29 +81,12 @@
       Elevação Superior é obrigatória
     </mat-error>
   </mat-form-field>
-  
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>Elevação Inferior</mat-label>
-    <input matInput formControlName="elevacaoInferior" type="number" />
-    <mat-error *ngIf="overlayForm.get('elevacaoInferior')?.hasError('required')">
-      Elevação Inferior é obrigatória
-    </mat-error>
-  </mat-form-field>
-  
-
-  <mat-form-field appearance="fill">
-    <mat-label>Elevação Superior</mat-label>
-    <input matInput formControlName="elevacaoSuperior" type="number" />
-    <mat-error *ngIf="overlayForm.get('elevacaoSuperior')?.hasError('required')">
-      Elevação Superior é obrigatória
-    </mat-error>
-  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Dimensão</mat-label>
-    <input matInput formControlName="dimensao" type="number" />
+    <input matInput formControlName="dimensao" readonly/>
     <mat-error *ngIf="overlayForm.get('dimensao')?.hasError('required')">
-      Dimensão é obrigatória
+      Dimensão -  preenchimento automático
     </mat-error>
   </mat-form-field>
 
@@ -183,15 +158,34 @@
     <mat-label>Término MKS</mat-label>
     <input
       matInput
-      [matDatepicker]="pickerTerminoMKS"
+      [matDatepicker]="picker"
       formControlName="terminoMKS"
+      [min]="minDate"
+      [max]="maxDate"
     />
-    <mat-datepicker-toggle matSuffix [for]="pickerTerminoMKS"></mat-datepicker-toggle>
-    <mat-datepicker #pickerTerminoMKS></mat-datepicker>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
     <mat-error *ngIf="overlayForm.get('terminoMKS')?.hasError('required')">
       Término MKS é obrigatório
     </mat-error>
+    <mat-error *ngIf="overlayForm.get('terminoMKS')?.hasError('dateRange')">
+      A data deve estar dentro de 2 meses anteriores ou posteriores à data atual
+    </mat-error>
   </mat-form-field>
+  
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Término MKS</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="terminoMKS" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="overlayForm.get('terminoMKS')?.hasError('required')">
+        Término MKS é obrigatório
+      </mat-error>
+      <mat-error *ngIf="overlayForm.get('terminoMKS')?.hasError('dateRange')">
+        A data deve estar dentro de 2 meses anteriores ou posteriores à data atual
+      </mat-error>
+  </mat-form-field> -->
 
 
   <mat-form-field appearance="fill">
@@ -208,13 +202,32 @@
       matInput
       [matDatepicker]="pickerValidacaoMKS"
       formControlName="validacaoMKS"
+      [min]="minDate"
+      [max]="maxDate"
     />
     <mat-datepicker-toggle matSuffix [for]="pickerValidacaoMKS"></mat-datepicker-toggle>
     <mat-datepicker #pickerValidacaoMKS></mat-datepicker>
     <mat-error *ngIf="overlayForm.get('validacaoMKS')?.hasError('required')">
       Validação MKS é obrigatória
     </mat-error>
+    <mat-error *ngIf="overlayForm.get('validacaoMKS')?.hasError('dateRange')">
+      A data deve estar dentro de 2 meses anteriores ou posteriores à data atual
+    </mat-error>
   </mat-form-field>
+  
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Validação MKS</mat-label>
+    <input
+      matInput
+      [matDatepicker]="pickerValidacaoMKS"
+      formControlName="validacaoMKS"
+    />
+    <mat-datepicker-toggle matSuffix [for]="pickerValidacaoMKS"></mat-datepicker-toggle>
+    <mat-datepicker #pickerValidacaoMKS></mat-datepicker>
+    <mat-error *ngIf="overlayForm.get('validacaoMKS')?.hasError('required')">
+      Validação MKS é obrigatória
+    </mat-error>
+  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Validado Parceiro</mat-label>
@@ -254,13 +267,32 @@
       matInput
       [matDatepicker]="pickerDataLiberadoParceiro"
       formControlName="dataLiberadoParceiro"
+      [min]="minDate"
+      [max]="maxDate"
     />
     <mat-datepicker-toggle matSuffix [for]="pickerDataLiberadoParceiro"></mat-datepicker-toggle>
     <mat-datepicker #pickerDataLiberadoParceiro></mat-datepicker>
     <mat-error *ngIf="overlayForm.get('dataLiberadoParceiro')?.hasError('required')">
       Data Liberado Parceiro é obrigatória
     </mat-error>
+    <mat-error *ngIf="overlayForm.get('dataLiberadoParceiro')?.hasError('dateRange')">
+      A data deve estar dentro de 2 meses anteriores ou posteriores à data atual
+    </mat-error>
   </mat-form-field>
+  
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Data Liberado Parceiro</mat-label>
+    <input
+      matInput
+      [matDatepicker]="pickerDataLiberadoParceiro"
+      formControlName="dataLiberadoParceiro"
+    />
+    <mat-datepicker-toggle matSuffix [for]="pickerDataLiberadoParceiro"></mat-datepicker-toggle>
+    <mat-datepicker #pickerDataLiberadoParceiro></mat-datepicker>
+    <mat-error *ngIf="overlayForm.get('dataLiberadoParceiro')?.hasError('required')">
+      Data Liberado Parceiro é obrigatória
+    </mat-error>
+  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Status</mat-label>
