@@ -169,6 +169,9 @@ export class OverlayFormComponent implements OnInit {
   }
 
   onCancel(): void {
+    // this.overlayForm.reset(); //limpa o form
+    // this.router.navigate(['overlay-list']); // redirireiona pra tela de lista
+
     if (this.isEdit && this.id) {
       // Se for edição e um ID estiver presente, exclua o overlay
       this.overlayService.deleteOverlay(this.id).subscribe(() => {
