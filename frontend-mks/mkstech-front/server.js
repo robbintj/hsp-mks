@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 
 // Serve os arquivos estáticos da pasta 'dist/mkstech-front'
-app.use(express.static(path.join(__dirname, 'dist/mkstech-front')));
+app.use(express.static(path.join(__dirname, 'dist/mkstech-front/browser')));
 
 // Roteia todas as solicitações para o arquivo index.html
 app.get('*', (req, res) => {
