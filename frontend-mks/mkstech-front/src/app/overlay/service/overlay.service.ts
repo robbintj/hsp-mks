@@ -8,7 +8,9 @@ import { Overlay } from '../model/overlay.model';
 })
 export class OverlayService {
 
-  private apiUrl = 'http://localhost:8080/api/overlay';
+  // private apiUrl = 'http://localhost:8080/api/overlay';  
+  private apiUrl = 'http://ec2-3-144-199-231.us-east-2.compute.amazonaws.com:8080/api/overlay';
+
 
   constructor(private http: HttpClient) { }
 
