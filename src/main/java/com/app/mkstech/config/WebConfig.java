@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                // .allowedOrigins("https://mksteh.s3-website-sa-east-1.amazonaws.com") // URL pública do frontend
-                .allowedOrigins("http://localhost:4200") // Permitir apenas a origem do frontend
+                .allowedOrigins("http://localhost:4200") // Permitir apenas a origem do frontend mks
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                 .allowedHeaders("*");
     }
