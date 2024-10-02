@@ -1,0 +1,85 @@
+.success-message {
+  color: green;
+  margin-bottom: 16px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 16px;
+}
+
+/* Container para a barra de pesquisa e botão adicionar */
+.search-add-container {
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 16px;
+  margin: 0 auto; /* Centraliza o container na página */
+}
+
+/* Barra de pesquisa ocupa o máximo de espaço disponível */
+.search-bar {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.form-title {
+  color: #003366; /* Azul escuro */
+  margin-top: 24px;
+  margin-bottom: 24px; /* Espaço entre o título e o formulário */
+  font-size: 24px;
+  text-align: center; /* Centraliza o título */
+  border-bottom: 5px solid #add8e6; /* Linha azul claro abaixo do título */
+  padding-bottom: 8px; /* Espaço entre o texto e a linha */
+}
+
+/* Ajusta o tamanho do campo de formulário e botões */
+.mat-form-field {
+  width: 100%;
+}
+
+.table-container {
+  width: 100%;
+  max-width: 1200px; /* Define a largura máxima do contêiner */
+  margin: 0 auto; /* Centraliza o container na página */
+  overflow-x: auto; /* Permite rolagem horizontal se necessário */
+}
+
+/* Container para o overlay-list e overlay-form com margens responsivas */
+.overlay-container {
+  margin: 0 16px; /* Margem padrão para dispositivos maiores */
+  padding: 0 16px; /* Espaço interno para evitar que o conteúdo encoste nas bordas */
+}
+
+/* Ajusta as margens para dispositivos móveis */
+@media (max-width: 600px) {
+  .search-add-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-bar {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+
+  .table-container {
+    width: 100%; /* Garante que a tabela ocupe toda a largura em dispositivos móveis */
+  }
+
+  .overlay-container {
+    margin: 0 8px; /* Margem reduzida para dispositivos menores */
+    padding: 0 8px; /* Espaço interno reduzido para dispositivos menores */
+  }
+}
+
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}

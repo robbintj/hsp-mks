@@ -1,0 +1,83 @@
+// 404-page.component.scss
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+    background-color: #f5f5f5; // Cor de fundo da página
+  
+    h1 {
+      font-size: 4rem;
+      color: #e53935; // Cor para o código 404
+      margin-bottom: 1rem;
+    }
+  
+    p {
+      font-size: 1.25rem;
+      color: #333; // Cor do texto
+      margin-bottom: 2rem;
+    }
+  
+    a {
+      font-size: 1rem;
+      color: #007bff; // Cor do link
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    .error-icon {
+      font-size: 5rem;
+      color: #e53935; // Cor do ícone de erro
+      margin-bottom: 1rem;
+    }
+
+    
+  }
+  
+  // Use a Material Icon para o ícone de erro
+// 404-page.component.scss
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+    background-color: #f5f5f5; // Cor de fundo da página
+  
+    h1 {
+      font-size: 4rem;
+      color: #e53935; // Cor para o código 404
+      margin-bottom: 1rem;
+    }
+  
+    p {
+      font-size: 1.25rem;
+      color: #333; // Cor do texto
+      margin-bottom: 2rem;
+    }
+  
+    a {
+      font-size: 1rem;
+      color: #007bff; // Cor do link
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    .error-icon {
+      font-size: 5rem;
+      color: #e53935; // Cor do ícone de erro
+      margin-bottom: 1rem;
+    }
+  }
+  
+  // Use a Material Icon para o ícone de erro
+    
