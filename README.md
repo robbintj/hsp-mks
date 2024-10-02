@@ -9,7 +9,7 @@ Este é o projeto MKS, uma aplicação completa que inclui um frontend em Angula
 - **Tecnologia:** Angular 18
 - **Framework:** Angular Material
 - **Funcionalidades:**
-  - Tela de login (mockada)
+  - Tela de login usnndo JWT
   - Tela de cadastro e edição de registros
   - Tela de lista com pesquisa e paginação para a entidade `Overlay`
 
