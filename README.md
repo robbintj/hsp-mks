@@ -1,4 +1,4 @@
-# Projeto MKS 🚀
+# Projeto Overlay 🚀
 
 Este é o projeto MKS, uma aplicação completa que inclui um frontend em Angular, um backend em Java com Spring Boot, e um banco de dados PostgreSQL. O projeto também integra Swagger para a documentação das APIs.
 
